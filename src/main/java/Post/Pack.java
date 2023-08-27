@@ -11,6 +11,8 @@ public class Pack {
 
     private boolean priority;
 
+    private String status;
+
 
     public Pack(String sender,String recipient,double weight) {
 
@@ -37,6 +39,7 @@ public class Pack {
 
         this.priority = false;
 
+        this.status = "created";
 
 
 
@@ -48,7 +51,10 @@ public class Pack {
         this.recipient = recipient;
         this.weight = weight;
         this.priority = priority;
+        this.status = "created";
     }
+
+
 
 
     public boolean isPriority() {
@@ -58,6 +64,12 @@ public class Pack {
     public double getWeight (){
         return weight;
     }
+
+    public void isStatus(String status) {
+        this.status = status;
+
+    }
+
 
 
     public static String createRandom() {
@@ -140,6 +152,8 @@ public class Pack {
 
     }
 
+
+
     @Override
     public String toString() {
         String checkPriority = priority ? "Yes" : "No";
@@ -147,7 +161,7 @@ public class Pack {
                 "sender='" + sender + '\'' +
                 ",recipient='" + recipient + '\'' +
                 ",weight=" + weight +
-                ",priority=" + checkPriority +
+                ",priority=" + checkPriority + ",status= " + status +
                 '}';
     }
 }
