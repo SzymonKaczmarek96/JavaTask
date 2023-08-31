@@ -1,10 +1,29 @@
 package Post;
 
+
 import java.util.Scanner;
 
 public class PostOffice {
 
+    private Letters[] letters;
+
     private double profits;
+
+
+
+    public PostOffice(Letters lists) {
+        this.letters = new Letters[]{lists};
+
+
+    }
+
+    public PostOffice(){
+
+    }
+
+
+
+
 
     public void postAPackage(Pack pack, double payForSend) {
 
@@ -99,4 +118,68 @@ public class PostOffice {
     }
 
 
+    public void sendList(Letters letters, double payForList ) {
+
+        Letters allLetters = new Letters();
+
+        int freePlace = findFreePlace();
+
+        if (payForList < allLetters.priceList(true)) {
+
+            System.out.println("You don't have enough money, to send letters");
+        } else {
+            if (freePlace != -1) {
+
+                this.letters[freePlace] = letters;
+
+
+                System.out.println("List has been added");
+
+
+            } else if (freePlace >= 10) {
+
+                System.out.println("We can only send 10 letters");
+
+
+            }
+
+
+        }
+    }
+
+
+        private int findFreePlace() {
+            for(int i = 0; i< letters.length; i++) {
+
+                if(letters[i] == null)
+                    return i;
+
+            }
+            return -1;
+
+        }
+
+
+        public void postman() {
+
+            for(Letters sentLetters : letters) {
+                if(sentLetters != null){
+                    sentLetters.sendAllLetters();
+                }
+            }
+
+
+
+
+
+        }
+
+
+
 }
+
+
+
+
+
+

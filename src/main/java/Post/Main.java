@@ -110,11 +110,64 @@ public class Main {
 
 
 
-        List list = new List(address);
+        Letters letters = new Letters(address);
 
-        list.priceList(list.isPriority());
+        letters.priceList(letters.isPriority());
 
-        System.out.println(list);
+        System.out.println(letters);
+
+        PostOffice postOffice1 = new PostOffice(letters);
+
+
+        postOffice1.sendList(letters, 30);
+
+        System.out.println(letters);
+
+        postOffice1.postman();
+
+
+        System.out.println(letters);
+
+
+        Names names = new Names();
+
+        names.addName();
+
+        names.displayList();
+
+        names.displayFirstName();
+
+        names.changeName(1,"Marcin");
+
+        names.deleteName(0);
+
+        System.out.println("-----------");
+        System.out.println("-----------");
+        System.out.println("-----------");
+
+        names.displayList();
+
+        System.out.println("-----------");
+        System.out.println("-----------");
+        System.out.println("-----------");
+
+        names.connectList();
+
+
+        System.out.println("-----------");
+        System.out.println("-----------");
+        System.out.println("-----------");
+
+        names.displayWithLargeLetters();
+
+
+        System.out.println("-----------");
+        System.out.println("-----------");
+        System.out.println("-----------");
+
+        names.displayWomanNames();
+
+
 
 
 

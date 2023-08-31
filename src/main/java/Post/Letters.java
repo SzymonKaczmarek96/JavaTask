@@ -1,6 +1,6 @@
 package Post;
 
-public class List {
+public class Letters {
 
    private Address address;
 
@@ -11,10 +11,28 @@ public class List {
    private double priceList;
 
 
-    public List(Address address) {
+
+
+    public Letters(Address address) {
         this.address = address;
         this.priority = true;
         this.status = "created";
+    }
+
+
+
+    public Letters(){
+
+    }
+
+
+
+
+
+    public String sendAllLetters() {
+
+        return status = "sent";
+
     }
 
 
