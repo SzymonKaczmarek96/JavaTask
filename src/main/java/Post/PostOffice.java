@@ -5,43 +5,50 @@ import java.util.Scanner;
 
 public class PostOffice {
 
-    private Letters[] letters;
+    private Letter[] letters;
 
     private double profits;
 
+    private String lastSent;
 
 
-    public PostOffice(Letters lists) {
-        this.letters = new Letters[]{lists};
+
+    public PostOffice(Letter lists) {
+        this.letters = new Letter[]{lists};
 
 
     }
 
     public PostOffice(){
-
+        this.lastSent = null;
     }
 
 
 
 
 
-    public void postAPackage(Pack pack, double payForSend) {
+    public double postAPackage(Pack pack, double payForSend) {
 
-        if(pack.packPrice(pack.getWeight()) > payForSend) {
+        if(pack.calculatePackPrice() > payForSend) {
 
             System.out.println("You don't have enough money, to send package");
 
+            return 0;
+
         } else {
 
-            pack.isStatus("shipped");
+            pack.setStatus("shipped");
             System.out.println("Package have been shipped ");
-            profits += pack.packPrice(pack.getWeight());
+            profits += pack.calculatePackPrice();
 
 
 
 
         }
 
+        lastSent = String.valueOf(pack);
+
+        return profits - payForSend;
 
 
     }
@@ -81,13 +88,6 @@ public class PostOffice {
         return pack;
 
 
-
-
-
-
-
-
-
     }
 
     private boolean checkPriority(String userAnswer) {
@@ -102,11 +102,11 @@ public class PostOffice {
 
     }
 
-    public void checkLastShippedPackage(Pack pack) {
+    public void checkLastShippedPackage() {
 
-        if(pack != null) {
-            System.out.println("Last package: ");
-            System.out.println(pack);
+        if(lastSent != null) {
+            System.out.println("Last package: " + lastSent);
+
         } else {
 
             System.out.println("We don't have information about last shipped package");
@@ -118,25 +118,17 @@ public class PostOffice {
     }
 
 
-    public void sendList(Letters letters, double payForList ) {
+    public void sendList(Letter letter, double payForList ) {
 
-        Letters allLetters = new Letters();
+        Letter allLetter = new Letter();
 
         int freePlace = findFreePlace();
 
-        if (payForList < allLetters.priceList(true)) {
+        if (payForList < allLetter.priceList(true)) {
 
             System.out.println("You don't have enough money, to send letters");
         } else {
-            if (freePlace != -1) {
-
-                this.letters[freePlace] = letters;
-
-
-                System.out.println("List has been added");
-
-
-            } else if (freePlace >= 10) {
+             if (freePlace >= 10) {
 
                 System.out.println("We can only send 10 letters");
 
@@ -162,9 +154,9 @@ public class PostOffice {
 
         public void postman() {
 
-            for(Letters sentLetters : letters) {
-                if(sentLetters != null){
-                    sentLetters.sendAllLetters();
+            for(Letter sentLetter : letters) {
+                if(sentLetter != null){
+                    sentLetter.sendLetter();
                 }
             }
 

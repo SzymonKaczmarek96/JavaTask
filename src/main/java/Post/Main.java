@@ -1,13 +1,14 @@
 package Post;
 
-import java.util.Random;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
 
     public static void main(String[] args) {
 
-        Random random = new Random();
 
         try {
 
@@ -15,7 +16,7 @@ public class Main {
 
 
             System.out.println(pack);
-            double priceForSend = pack.packPrice(pack.getWeight());
+            double priceForSend = pack.calculatePackPrice();
 
             System.out.println(priceForSend + "$");
         }catch (IllegalArgumentException e){
@@ -23,18 +24,9 @@ public class Main {
         }
 
 
-        // create random package
-
-        String randomSender = Pack.createRandom();
-
-        String randomRecipient = Pack.createRandom();
-
-        double randomWeight = random.nextDouble(1,100000);
-
-        boolean randomPriority = random.nextBoolean();
 
 
-        final Pack pack1 = new Pack(randomSender,randomRecipient,randomWeight,randomPriority);
+        Pack pack1 = new Pack();
 
         System.out.println(pack1);
 
@@ -43,8 +35,8 @@ public class Main {
 
 
 
-        System.out.println(pack1.packPrice(pack1.getWeight()) + "$");
-        System.out.println(pack2.packPrice(pack2.getWeight()) + "$");
+        System.out.println(pack1.calculatePackPrice() + "$");
+        System.out.println(pack2.calculatePackPrice() + "$");
 
         // when we use final, after initialization we cannot assign new values
 
@@ -55,14 +47,8 @@ public class Main {
         Pack[] packs = new Pack[100];
 
         for (int i = 0; i < packs.length; i++) {
-            String rs = Pack.createRandom();
-            String rd = Pack.createRandom();
-            double rw = random.nextDouble(1,100000);
-            boolean rp = random.nextBoolean();
 
-
-
-            Pack packForTable = new Pack(rs,rd,rw,rp);
+            Pack packForTable = new Pack();
             packs[i] = packForTable;
         }
 
@@ -73,9 +59,9 @@ public class Main {
 
             System.out.println(displayPack);
 
-            System.out.println(displayPack.packPrice(displayPack.getWeight()) + "$");
+            System.out.println(displayPack.calculatePackPrice()+ "$");
 
-            priceForTheAllPacks += displayPack.packPrice(displayPack.getWeight());
+            priceForTheAllPacks += displayPack.calculatePackPrice();
 
 
 
@@ -94,80 +80,124 @@ public class Main {
 //
 ////        pack3 = postOffice.createPackage();
 //
-//        postOffice.postAPackage(pack3,50);
+        postOffice.postAPackage(pack2,50);
 //
 //
 //        postOffice.displayProfits();
 //
 //
-//        postOffice.checkLastShippedPackage(pack3);
+        postOffice.checkLastShippedPackage();
 
 
 
 
-        Address address = new Address("Baltycka",30,63000);
+        Address senderAddress = new Address("Baltycka",30,63000);
+        Address receiverAddress = new Address("Gdynska",15,62030);
 
 
 
 
-        Letters letters = new Letters(address);
+        Letter letter = new Letter(senderAddress,receiverAddress);
 
-        letters.priceList(letters.isPriority());
+        letter.priceList(letter.isPriority());
 
-        System.out.println(letters);
+        System.out.println(letter);
 
-        PostOffice postOffice1 = new PostOffice(letters);
+        PostOffice postOffice1 = new PostOffice(letter);
 
 
-        postOffice1.sendList(letters, 30);
+        postOffice1.sendList(letter, 30);
 
-        System.out.println(letters);
+        System.out.println(letter);
 
         postOffice1.postman();
 
 
-        System.out.println(letters);
+        System.out.println(letter);
 
 
-        Names names = new Names();
+//        Names names = new Names();
+//
+//        names.addName();
+//
+//        System.out.println(names);
+//
+//        names.displayFirstName();
+//
+//        names.changeName(1,"Marcin");
+//
+//        names.deleteName(0);
+//
+//        System.out.println("-----------");
+//        System.out.println("-----------");
+//        System.out.println("-----------");
+//
+//        System.out.println(names);
+//
+//        System.out.println("-----------");
+//        System.out.println("-----------");
+//        System.out.println("-----------");
+//
+//        names.connectList();
+//
+//        System.out.println(names);
+//
+//
+//        System.out.println("-----------");
+//        System.out.println("-----------");
+//        System.out.println("-----------");
+//
+//        names.displayWithLargeLetters();
+//
+//
+//        System.out.println("-----------");
+//        System.out.println("-----------");
+//        System.out.println("-----------");
+//
+//        names.displayWomanNames();
 
-        names.addName();
+        List<String> nameList = new ArrayList<>();
 
-        names.displayList();
+        List<String> secondList = new ArrayList<>();
 
-        names.displayFirstName();
+        nameList.add("Szymon");
+        nameList.add("Ola");
+        nameList.add("Karolina");
+        nameList.add("Dawid");
+        nameList.add("Andrzej");
 
-        names.changeName(1,"Marcin");
+        secondList.add("Jadwiga");
+        secondList.add("Piotr");
 
-        names.deleteName(0);
+        System.out.println(nameList);
 
-        System.out.println("-----------");
-        System.out.println("-----------");
-        System.out.println("-----------");
-
-        names.displayList();
-
-        System.out.println("-----------");
-        System.out.println("-----------");
-        System.out.println("-----------");
-
-        names.connectList();
+        System.out.println(secondList);
 
 
-        System.out.println("-----------");
-        System.out.println("-----------");
-        System.out.println("-----------");
 
-        names.displayWithLargeLetters();
+        String name = nameList.get(0);
 
+        System.out.println(name);
 
-        System.out.println("-----------");
-        System.out.println("-----------");
-        System.out.println("-----------");
+        nameList.add(1,"Pawel");
 
-        names.displayWomanNames();
+        nameList.remove(1);
 
+        secondList.addAll(nameList);
 
+        for (String nameInList: secondList) {
+            System.out.println(nameInList.toUpperCase());
+        }
+
+        for (String nameInList: secondList) {
+            if(nameInList.endsWith("a")) {
+                System.out.println(nameInList);
+            }
+        }
+
+        System.out.println(nameList);
+
+        System.out.println(secondList);
 
 
 

@@ -1,8 +1,10 @@
 package Post;
 
-public class Letters {
+public class Letter {
 
-   private Address address;
+   private Address senderAddress;
+
+   private Address receiverAddress;
 
    private boolean priority;
 
@@ -13,15 +15,16 @@ public class Letters {
 
 
 
-    public Letters(Address address) {
-        this.address = address;
+    public Letter(Address senderAddress, Address receiverAddress) {
+        this.senderAddress = senderAddress;
+        this.receiverAddress = receiverAddress;
         this.priority = true;
         this.status = "created";
     }
 
 
 
-    public Letters(){
+    public Letter(){
 
     }
 
@@ -29,7 +32,7 @@ public class Letters {
 
 
 
-    public String sendAllLetters() {
+    public String sendLetter() {
 
         return status = "sent";
 
@@ -62,7 +65,7 @@ public class Letters {
     @Override
     public String toString() {
         return
-                 address +
+                 "Sender: " + senderAddress + ", " + "Receiver:  " + receiverAddress +
                 ", priority = " + priority +
                 ", status = " + status + ", "  + "price = " + priceList + "$";
 

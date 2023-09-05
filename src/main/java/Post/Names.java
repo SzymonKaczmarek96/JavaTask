@@ -29,15 +29,6 @@ public class Names {
     }
 
 
-    public void displayList() {
-
-        for(String name: nameList){
-            System.out.println(name);
-        }
-
-
-
-    }
 
     public void displayFirstName() {
 
@@ -64,9 +55,7 @@ public class Names {
 
         secondList.addAll(nameList);
 
-        for (String name: secondList) {
-            System.out.println(name);
-        }
+
 
 
 
@@ -92,5 +81,12 @@ public class Names {
         }
 
 
+    }
+
+    @Override
+    public String toString() {
+        return "Names: " + nameList + '\'' +
+                ", Names: " + secondList
+                ;
     }
 }

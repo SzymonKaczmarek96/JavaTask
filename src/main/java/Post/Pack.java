@@ -4,6 +4,7 @@ import java.util.Random;
 
 public class Pack {
 
+    private Random random = new Random();
     private String sender;
     private String recipient;
 
@@ -13,10 +14,7 @@ public class Pack {
 
     private String status;
 
-
     public Pack(String sender,String recipient,double weight) {
-
-
 
         if(sender == null || sender.isEmpty() || recipient == null || recipient.isEmpty()) {
 
@@ -54,6 +52,16 @@ public class Pack {
         this.status = "created";
     }
 
+    public Pack () {
+
+        this.sender = createRandom();
+        this.recipient = createRandom();
+        this.weight = random.nextDouble(1,100000);
+        this.priority = random.nextBoolean();
+        this.status = "created";
+
+    }
+
 
 
 
@@ -65,15 +73,15 @@ public class Pack {
         return weight;
     }
 
-    public void isStatus(String status) {
+    public void setStatus(String status) {
         this.status = status;
 
     }
 
 
 
-    public static String createRandom() {
-        Random random = new Random();
+    private String createRandom() {
+
         String[] nameList = {"Kacper","Aleksandra","Szymon","Piotr","Aleksander","Mateusz","Krzysztof"};
 
         int randomName = random.nextInt(nameList.length);
@@ -85,7 +93,7 @@ public class Pack {
     }
 
 
-    public double packPrice(double getWeight) {
+    public double calculatePackPrice() {
 
         final double priorityPrice = 0.1;
 
@@ -94,61 +102,49 @@ public class Pack {
 
         if (isPriority()) {
 
-             return checkWeight(priorityPrice,getWeight);
+             return checkWeight(priorityPrice);
 
         }
 
-        return checkWeight(noPriority,getWeight);
+        return checkWeight(noPriority);
     }
 
 
-    private double checkWeight(double bonusPrice, double getWeight) {
+    private double calculateBasePrice() {
 
         double priceForPack;
 
-        if(getWeight < 500) {
+        if(weight < 500) {
 
             priceForPack = 5;
 
-            return priceForPack + (priceForPack*bonusPrice);
-
-        }
-
-        if(getWeight > 500 && getWeight <= 1000) {
-
+        }else if(weight > 500 && weight <= 1000) {
 
             priceForPack = 8;
 
-            return priceForPack + (priceForPack*bonusPrice);
-
-        }
-
-
-        if(getWeight > 1000 && getWeight <= 2000) {
+        }else if(weight > 1000 && weight <= 2000) {
 
             priceForPack = 12;
-
-            return priceForPack + (priceForPack*bonusPrice);
             
+        }else {
 
-
-        }
-        
-        if (getWeight > 2000) {
-
-
-            double overweight = (getWeight - 2000) / 1000;
+            double overweight = (weight - 2000) / 1000;
 
             double roundedUp = Math.ceil(overweight);
 
             priceForPack = 12 + roundedUp;
 
-            return priceForPack + (priceForPack * bonusPrice);
+
         }
 
+        return priceForPack;
+    }
 
+    private double checkWeight(double bonusPrice) {
 
-        return 0;
+        double basePrice = calculateBasePrice();
+
+        return basePrice + (basePrice * bonusPrice);
 
     }
 
