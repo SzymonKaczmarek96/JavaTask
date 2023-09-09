@@ -37,7 +37,7 @@ public class PostOffice {
 
         } else {
 
-            pack.setStatus("shipped");
+            pack.setStatus();
             System.out.println("Package have been shipped ");
             profits += pack.calculatePackPrice();
 

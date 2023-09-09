@@ -10,9 +10,9 @@ public class Pack {
 
     private double weight;
 
-    private boolean priority;
+    private PriorityAndStatus priority;
 
-    private String status;
+    private PriorityAndStatus status;
 
     public Pack(String sender,String recipient,double weight) {
 
@@ -35,9 +35,9 @@ public class Pack {
 
         this.weight = weight;
 
-        this.priority = false;
+        this.priority = PriorityAndStatus.NOTPRIORITY;
 
-        this.status = "created";
+        this.status = PriorityAndStatus.CREATED;
 
 
 
@@ -48,8 +48,8 @@ public class Pack {
         this.sender = sender;
         this.recipient = recipient;
         this.weight = weight;
-        this.priority = priority;
-        this.status = "created";
+        this.priority = PriorityAndStatus.NOTPRIORITY;
+        this.status = PriorityAndStatus.CREATED;
     }
 
     public Pack () {
@@ -57,15 +57,15 @@ public class Pack {
         this.sender = createRandom();
         this.recipient = createRandom();
         this.weight = random.nextDouble(1,100000);
-        this.priority = random.nextBoolean();
-        this.status = "created";
+        this.priority = randomPriority();
+        this.status = PriorityAndStatus.CREATED;
 
     }
 
 
 
 
-    public boolean isPriority() {
+    public PriorityAndStatus isPriority() {
         return priority;
     }
 
@@ -73,8 +73,8 @@ public class Pack {
         return weight;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public PriorityAndStatus setStatus() {
+        return PriorityAndStatus.SENT;
 
     }
 
@@ -100,7 +100,7 @@ public class Pack {
         final double noPriority = 0;
 
 
-        if (isPriority()) {
+        if (isPriority().equals(PriorityAndStatus.PRIORITY)) {
 
              return checkWeight(priorityPrice);
 
@@ -148,16 +148,26 @@ public class Pack {
 
     }
 
+    private PriorityAndStatus randomPriority() {
+        boolean draw = random.nextBoolean();
+
+        if(draw) {
+            return PriorityAndStatus.PRIORITY;
+        }
+
+        return PriorityAndStatus.NOTPRIORITY;
+    }
+
 
 
     @Override
     public String toString() {
-        String checkPriority = priority ? "Yes" : "No";
+
         return
                 "sender='" + sender + '\'' +
                 ",recipient='" + recipient + '\'' +
                 ",weight=" + weight +
-                ",priority=" + checkPriority + ",status= " + status +
+                ",priority=" + priority.toString() + ",status= " + status +
                 '}';
     }
 }

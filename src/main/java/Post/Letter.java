@@ -8,7 +8,7 @@ public class Letter {
 
    private boolean priority;
 
-   private String status;
+   private PriorityAndStatus status;
 
    private double priceList;
 
@@ -19,7 +19,7 @@ public class Letter {
         this.senderAddress = senderAddress;
         this.receiverAddress = receiverAddress;
         this.priority = true;
-        this.status = "created";
+        this.status = PriorityAndStatus.CREATED;
     }
 
 
@@ -32,9 +32,9 @@ public class Letter {
 
 
 
-    public String sendLetter() {
+    public PriorityAndStatus sendLetter() {
 
-        return status = "sent";
+        return status = PriorityAndStatus.SENT;
 
     }
 

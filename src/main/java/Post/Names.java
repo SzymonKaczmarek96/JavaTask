@@ -90,3 +90,44 @@ public class Names {
                 ;
     }
 }
+
+//        Names names = new Names();
+//
+//        names.addName();
+//
+//        System.out.println(names);
+//
+//        names.displayFirstName();
+//
+//        names.changeName(1,"Marcin");
+//
+//        names.deleteName(0);
+//
+//        System.out.println("-----------");
+//        System.out.println("-----------");
+//        System.out.println("-----------");
+//
+//        System.out.println(names);
+//
+//        System.out.println("-----------");
+//        System.out.println("-----------");
+//        System.out.println("-----------");
+//
+//        names.connectList();
+//
+//        System.out.println(names);
+//
+//
+//        System.out.println("-----------");
+//        System.out.println("-----------");
+//        System.out.println("-----------");
+//
+//        names.displayWithLargeLetters();
+//
+//
+//        System.out.println("-----------");
+//        System.out.println("-----------");
+//        System.out.println("-----------");
+//
+//        names.displayWomanNames();
+

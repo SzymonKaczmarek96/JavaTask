@@ -38,11 +38,6 @@ public class Main {
         System.out.println(pack1.calculatePackPrice() + "$");
         System.out.println(pack2.calculatePackPrice() + "$");
 
-        // when we use final, after initialization we cannot assign new values
-
-
-
-        // 100 random packages
 
         Pack[] packs = new Pack[100];
 
@@ -71,21 +66,13 @@ public class Main {
         System.out.println("It's a price for the all packs " + Math.ceil(priceForTheAllPacks) + "$");
 
 
-        // post office
+
 
         PostOffice postOffice = new PostOffice();
 
-//        Pack pack3;
-//
-//
-////        pack3 = postOffice.createPackage();
-//
+
         postOffice.postAPackage(pack2,50);
-//
-//
-//        postOffice.displayProfits();
-//
-//
+
         postOffice.checkLastShippedPackage();
 
 
@@ -116,45 +103,6 @@ public class Main {
         System.out.println(letter);
 
 
-//        Names names = new Names();
-//
-//        names.addName();
-//
-//        System.out.println(names);
-//
-//        names.displayFirstName();
-//
-//        names.changeName(1,"Marcin");
-//
-//        names.deleteName(0);
-//
-//        System.out.println("-----------");
-//        System.out.println("-----------");
-//        System.out.println("-----------");
-//
-//        System.out.println(names);
-//
-//        System.out.println("-----------");
-//        System.out.println("-----------");
-//        System.out.println("-----------");
-//
-//        names.connectList();
-//
-//        System.out.println(names);
-//
-//
-//        System.out.println("-----------");
-//        System.out.println("-----------");
-//        System.out.println("-----------");
-//
-//        names.displayWithLargeLetters();
-//
-//
-//        System.out.println("-----------");
-//        System.out.println("-----------");
-//        System.out.println("-----------");
-//
-//        names.displayWomanNames();
 
         List<String> nameList = new ArrayList<>();
 
