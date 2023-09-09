@@ -1,0 +1,133 @@
+package Post;
+
+import javax.naming.Name;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Names {
+    private List<String> nameList = new ArrayList<>();
+
+    private String nameToList;
+
+    private List<String> secondList = new ArrayList<>();
+
+
+
+    public void addName() {
+
+        nameList.add("Szymon");
+        nameList.add("Ola");
+        nameList.add("Karolina");
+        nameList.add("Dawid");
+        nameList.add("Andrzej");
+
+        secondList.add("Jadwiga");
+        secondList.add("Piotr");
+
+
+
+    }
+
+
+
+    public void displayFirstName() {
+
+        String name = nameList.get(0);
+
+        System.out.println(name);
+    }
+
+    public void changeName(int nameIndex, String name) {
+
+        nameList.add(nameIndex,name);
+
+
+    }
+
+
+    public void deleteName(int whichName) {
+
+        nameList.remove(whichName);
+
+    }
+
+    public void connectList() {
+
+        secondList.addAll(nameList);
+
+
+
+
+
+
+    }
+
+    public void displayWithLargeLetters() {
+
+        for (String name: secondList) {
+            System.out.println(name.toUpperCase());
+        }
+
+
+    }
+
+
+    public void displayWomanNames() {
+
+        for (String name: secondList) {
+            if(name.endsWith("a")) {
+                System.out.println(name);
+            }
+        }
+
+
+    }
+
+    @Override
+    public String toString() {
+        return "Names: " + nameList + '\'' +
+                ", Names: " + secondList
+                ;
+    }
+}
+
+//        Names names = new Names();
+//
+//        names.addName();
+//
+//        System.out.println(names);
+//
+//        names.displayFirstName();
+//
+//        names.changeName(1,"Marcin");
+//
+//        names.deleteName(0);
+//
+//        System.out.println("-----------");
+//        System.out.println("-----------");
+//        System.out.println("-----------");
+//
+//        System.out.println(names);
+//
+//        System.out.println("-----------");
+//        System.out.println("-----------");
+//        System.out.println("-----------");
+//
+//        names.connectList();
+//
+//        System.out.println(names);
+//
+//
+//        System.out.println("-----------");
+//        System.out.println("-----------");
+//        System.out.println("-----------");
+//
+//        names.displayWithLargeLetters();
+//
+//
+//        System.out.println("-----------");
+//        System.out.println("-----------");
+//        System.out.println("-----------");
+//
+//        names.displayWomanNames();
+
